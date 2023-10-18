@@ -100,7 +100,7 @@ describe('fetch', () => {
             "credentialSubject": {
                 "birthday": 19960424,
                 "documentType": 99,
-                "id": "did:polygonid:polygon:mumbai:2qGGMEVZUHU1boxfqiRR1fs31xPkJMTxENESLSRchZ",
+                "id": "did:uptickid:uptick:mumbai:2qGGMEVZUHU1boxfqiRR1fs31xPkJMTxENESLSRchZ",
                 "type": "KYCAgeCredential"
             },
             "expirationDate": "2361-03-21T21:14:48+02:00",
@@ -141,7 +141,7 @@ describe('fetch', () => {
     },
     "from": "did:iden3:tSsTSJY6g9yUc54FFH6yhx2ymZNtsuTAD9p3avWCb",
     "id": "30e37e90-2242-4a36-b475-799047d60481",
-    "to": "did:polygonid:polygon:mumbai:2qGGMEVZUHU1boxfqiRR1fs31xPkJMTxENESLSRchZ",
+    "to": "did:uptickid:uptick:mumbai:2qGGMEVZUHU1boxfqiRR1fs31xPkJMTxENESLSRchZ",
     "typ": "application/iden3comm-plain-json",
     "type": "https://iden3-communication.io/credentials/1.0/issuance-response"
 }`;
@@ -193,7 +193,7 @@ describe('fetch', () => {
 
     const { did: userDID, credential: cred } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -205,7 +205,7 @@ describe('fetch', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {

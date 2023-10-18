@@ -194,7 +194,7 @@ describe('contract-request', () => {
   it('contract request flow', async () => {
     const { did: userDID, credential: cred } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -207,7 +207,7 @@ describe('contract-request', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {
@@ -333,7 +333,7 @@ describe('contract-request', () => {
 
     const { did: userDID, credential: cred } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -346,7 +346,7 @@ describe('contract-request', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {

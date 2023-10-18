@@ -2,7 +2,7 @@ const esbuild = require('esbuild');
 const baseConfig = require('./base.config');
 const pkg = require('../package.json');
 
-const name = 'PolygonIdSdk';
+const name = 'UptickIdSdk';
 
 esbuild.build({
   ...baseConfig,

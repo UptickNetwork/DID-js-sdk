@@ -35,7 +35,7 @@
         defaultEthConnectionConfig,
         OnChainResolver,
         MerkleTreeIndexedDBStorage
-    } = PolygonIdSdk;
+    } = UptickIdSdk;
 
     const run = async () => {
         const keyStore = new LocalStoragePrivateKeyStore();
@@ -81,7 +81,7 @@
 
         const { did, credential } = await wallet.createIdentity({
             method: core.DidMethod.Iden3,
-            blockchain: core.Blockchain.Polygon,
+            blockchain: core.Blockchain.Uptick,
             networkId: core.NetworkId.Mumbai,
             seed: seedPhrase,
             revocationOpts: {
@@ -91,7 +91,7 @@
         }
         );
         console.log(did.string());
-        console.assert(did.string() === 'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth');
+        console.assert(did.string() === 'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth');
 
     };
     run().catch(console.error);

@@ -121,7 +121,7 @@ describe('mtp onchain proofs', () => {
 
     const { did: userDID } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -132,7 +132,7 @@ describe('mtp onchain proofs', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {

@@ -23,7 +23,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'extract information from credentialStatus.id',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?revocationNonce=1234&contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?revocationNonce=1234&contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: 0
       },
@@ -37,7 +37,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'revocation nonce is 0 on id',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?revocationNonce=0&contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?revocationNonce=0&contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: undefined
       },
@@ -51,7 +51,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'revocation nonce is 0 on credentialStatus',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: 0
       },
@@ -65,7 +65,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'Parse stateHex from credentialStatus.id',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2&state=a1abdb9f44c7b649eb4d21b59ef34bd38e054aa3e500987575a14fc92c49f42c',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2&state=a1abdb9f44c7b649eb4d21b59ef34bd38e054aa3e500987575a14fc92c49f42c',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: 100
       },
@@ -79,7 +79,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'invalid id format',
       input: {
-        id: 'did:polygonid:eth:2tCntr26bxYnTERr7uTX3mDU182tTTKGmye8T4uwtM',
+        id: 'did:uptickid:eth:2tCntr26bxYnTERr7uTX3mDU182tTTKGmye8T4uwtM',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: 4321
       },
@@ -88,7 +88,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'invalid contract address format',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?revocationNonce=1234&contractAddress=0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?revocationNonce=1234&contractAddress=0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: 4321
       },
@@ -97,7 +97,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'revocationNonce is empty',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus?contractAddress=80001:0x2fCE183c7Fbc4EbB5DB3B0F5a63e0e02AE9a85d2',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: undefined
       },
@@ -106,7 +106,7 @@ describe('parse credential status with type Iden3OnchainSparseMerkleTreeProof202
     {
       name: 'contractAddress is required parameter',
       input: {
-        id: 'did:polygonid:polygon:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus',
+        id: 'did:uptickid:uptick:mumbai:2qCU58EJgrELbXjWbWGC9kPPnczQdp93nUR6LC45F6/credentialStatus',
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
         revocationNonce: 1234
       },
@@ -183,12 +183,12 @@ describe('onchain', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
-        id: 'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
+        id: 'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
         nonce: 0
       }
     });
@@ -197,12 +197,12 @@ describe('onchain', () => {
 
     const { did: userDID } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
-        id: 'did:iden3:polygon:mumbai:wuw5tydZ7AAd3efwEqPprnqjiNHR24jqruSPKmV1V/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
+        id: 'did:iden3:uptick:mumbai:wuw5tydZ7AAd3efwEqPprnqjiNHR24jqruSPKmV1V/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
         nonce: 0
       }
     });
@@ -220,7 +220,7 @@ describe('onchain', () => {
       revocationOpts: {
         nonce: 1000,
         type: CredentialStatusType.Iden3ReverseSparseMerkleTreeProof,
-        id: 'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3&state=ed17a07e8b78ab979507829fa4d37e663ca5906714d506dec8a174d949c5eb09'
+        id: 'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3&state=ed17a07e8b78ab979507829fa4d37e663ca5906714d506dec8a174d949c5eb09'
       }
     };
 
@@ -286,12 +286,12 @@ describe('onchain', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
-        id: 'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
+        id: 'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
         nonce: 0
       }
     });
@@ -300,12 +300,12 @@ describe('onchain', () => {
 
     const { did: userDID } = await idWallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
         type: CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
-        id: 'did:iden3:polygon:mumbai:wuw5tydZ7AAd3efwEqPprnqjiNHR24jqruSPKmV1V/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
+        id: 'did:iden3:uptick:mumbai:wuw5tydZ7AAd3efwEqPprnqjiNHR24jqruSPKmV1V/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3',
         nonce: 0
       }
     });
@@ -323,7 +323,7 @@ describe('onchain', () => {
       revocationOpts: {
         nonce: 1000,
         type: CredentialStatusType.Iden3ReverseSparseMerkleTreeProof,
-        id: 'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3'
+        id: 'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth/credentialStatus?contractAddress=80001:0x068F826Da7e5119891a792817C5bE8bB9816b9D3'
       }
     };
 

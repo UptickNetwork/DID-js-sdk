@@ -94,7 +94,7 @@ export const cred5 = createTestCredential({
   proof: ['some proof4'],
   type: ['type4'],
   credentialStatus: {
-    id: 'https://rhs-staging.polygonid.me',
+    id: 'https://rhs-staging.uptickid.me',
     type: 'Iden3ReverseSparseMerkleTreeProof',
     nonce: 10
   },

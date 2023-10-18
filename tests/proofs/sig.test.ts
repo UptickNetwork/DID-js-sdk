@@ -103,7 +103,7 @@ describe('sig proofs', () => {
 
     const opts = (seed: Uint8Array) => ({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed,
       revocationOpts: {
@@ -277,7 +277,7 @@ describe('sig proofs', () => {
       type: 'https://iden3-communication.io/authorization/1.0/request',
       thid: '0d8e91e5-5686-49b5-85e3-2b35538c6a03',
       body: {
-        callbackUrl: 'https://verifier-v2.polygonid.me/api/callback?sessionId=25269',
+        callbackUrl: 'https://verifier-v2.uptickid.me/api/callback?sessionId=25269',
         reason: 'test flow',
         scope: [
           {
@@ -296,7 +296,7 @@ describe('sig proofs', () => {
           }
         ]
       },
-      from: 'did:polygonid:polygon:mumbai:2qLPqvayNQz9TA2r5VPxUugoF18teGU583zJ859wfy'
+      from: 'did:uptickid:uptick:mumbai:2qLPqvayNQz9TA2r5VPxUugoF18teGU583zJ859wfy'
     };
 
     const claimReq: CredentialRequest = {

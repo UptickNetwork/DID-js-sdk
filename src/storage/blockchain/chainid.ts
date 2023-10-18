@@ -7,9 +7,9 @@ export const CHAIN_IDS: { [key: string]: number } = {
   'eth:main': 1,
   'eth:goerli': 5,
   'eth:sepolia': 11155111,
-  polygon: 137,
-  'polygon:main': 137,
-  'polygon:mumbai': 80001,
+  uptick: 137,
+  'uptick:main': 137,
+  'uptick:mumbai': 80001,
   zkevm: 1101,
   'zkevm:main': 1101,
   'zkevm:test': 1442
@@ -21,7 +21,7 @@ export const CHAIN_IDS: { [key: string]: number } = {
  */
 export const DEFAULT_NETWORKS: { [key: string]: number } = {
   ethr: 1,
-  polygonid: 137
+  uptickid: 137
 };
 
 /**
@@ -70,7 +70,7 @@ export const getChainId = (blockchain: string, network?: string): number => {
  * @param {string} network - The network name.
  * @beta This API will change in the future.
  * @example
- * registerChainId('polygonid', 137);
+ * registerChainId('uptickid', 137);
  */
 export const registerDefaultNetworkForMethodId = (methodId: string, chainId: number): void => {
   DEFAULT_NETWORKS[methodId] = chainId;
@@ -84,7 +84,7 @@ export const registerDefaultNetworkForMethodId = (methodId: string, chainId: num
  * @throws {Error} Throws an error if the chainId not found.
  * @beta This API will change in the future.
  * @example
- * const chainId = getChainId('polygonid');
+ * const chainId = getChainId('uptickid');
  * // chainId will be 137
  */
 export const getDefaultNetworkForMethodId = (methodId: string): number => {

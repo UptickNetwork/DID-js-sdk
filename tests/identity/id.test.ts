@@ -86,7 +86,7 @@ describe('identity', () => {
 
     const { did, credential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -95,7 +95,7 @@ describe('identity', () => {
       }
     });
     expect(did.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
     const dbCred = await dataStorage.credential.findCredentialById(credential.id);
     expect(credential).to.deep.equal(dbCred);
@@ -112,7 +112,7 @@ describe('identity', () => {
 
     const { did } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -121,15 +121,15 @@ describe('identity', () => {
       }
     });
     expect(did.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
 
-    const profileDID = await wallet.createProfile(did, 10, 'http://polygonissuer.com/');
+    const profileDID = await wallet.createProfile(did, 10, 'http://uptickissuer.com/');
     expect(profileDID.string()).to.equal(
-      'did:iden3:polygon:mumbai:x2Ld4XmxEo6oGCSr3MsqBa5PmJie6WJ6pFbetzYuq'
+      'did:iden3:uptick:mumbai:x2Ld4XmxEo6oGCSr3MsqBa5PmJie6WJ6pFbetzYuq'
     );
 
-    const dbProfile = await dataStorage.identity.getProfileByVerifier('http://polygonissuer.com/');
+    const dbProfile = await dataStorage.identity.getProfileByVerifier('http://uptickissuer.com/');
     expect(dbProfile).not.to.be.undefined;
     if (dbProfile) {
       expect(dbProfile.id).to.equal(profileDID.string());
@@ -142,7 +142,7 @@ describe('identity', () => {
 
     const { did, credential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -151,7 +151,7 @@ describe('identity', () => {
       }
     });
     expect(did.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
 
     const enc = byteEncoder; // always utf-8
@@ -168,7 +168,7 @@ describe('identity', () => {
 
     const { did, credential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -177,7 +177,7 @@ describe('identity', () => {
       }
     });
     expect(did.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
 
     const proof = await wallet.generateCredentialMtp(did, credential);
@@ -189,7 +189,7 @@ describe('identity', () => {
 
     const { did, credential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -198,7 +198,7 @@ describe('identity', () => {
       }
     });
     expect(did.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
 
     const proof = await wallet.generateNonRevocationMtp(did, credential);
@@ -211,7 +211,7 @@ describe('identity', () => {
 
     const { did, credential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhrase,
       revocationOpts: {
@@ -220,7 +220,7 @@ describe('identity', () => {
       }
     });
     expect(did.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
 
     const proof = await wallet.generateNonRevocationMtp(did, credential);
@@ -234,7 +234,7 @@ describe('identity', () => {
 
     const { did: issuerDID, credential: issuerAuthCredential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {
@@ -244,14 +244,14 @@ describe('identity', () => {
     });
 
     expect(issuerDID.string()).to.equal(
-      'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
+      'did:iden3:uptick:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth'
     );
 
     expect(issuerAuthCredential).not.to.be.undefined;
 
     const { did: userDID, credential: userAuthCredential } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseUser,
       revocationOpts: {
@@ -287,7 +287,7 @@ describe('identity', () => {
 
     const { did: issuerDID } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseIssuer,
       revocationOpts: {
@@ -298,7 +298,7 @@ describe('identity', () => {
 
     const { did: userDID } = await wallet.createIdentity({
       method: DidMethod.Iden3,
-      blockchain: Blockchain.Polygon,
+      blockchain: Blockchain.Uptick,
       networkId: NetworkId.Mumbai,
       seed: seedPhraseUser,
       revocationOpts: {
