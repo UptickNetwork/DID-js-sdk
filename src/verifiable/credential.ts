@@ -1,0 +1,171 @@
+import { BJJSignatureProof2021, Iden3SparseMerkleTreeProof, CredentialStatus } from './proof';
+import { Claim } from '@uptsmart/js-iden3-core';
+import { ProofType } from './constants';
+import { Proof } from '@iden3/js-merkletree';
+import { Merklizer, Options } from '@iden3/js-jsonld-merklization';
+
+/**
+ * W3C Verifiable credential
+ *
+ * @public
+ * @export
+ * @class W3CCredential
+ */
+export class W3CCredential {
+  id = '';
+  '@context': string[] = [];
+  type: string[] = [];
+  expirationDate?: string;
+  issuanceDate?: string;
+  credentialSubject: { [key: string]: object | string | number | boolean } = {};
+  credentialStatus!: CredentialStatus;
+  issuer = '';
+  credentialSchema!: CredentialSchema;
+  proof?: object | unknown[];
+
+  /**
+   * merklization of the verifiable credential
+   *
+   * @returns `Promise<Merklizer>`
+   */
+  async merklize(opts?: Options): Promise<Merklizer> {
+    const credential = { ...this };
+    delete credential.proof;
+    return await Merklizer.merklizeJSONLD(JSON.stringify(credential), opts);
+  }
+
+  /**
+   * gets core claim representation from credential proof
+   *
+   * @param {ProofType} proofType
+   * @returns {*}  {(Claim | undefined)}
+   */
+  getCoreClaimFromProof(proofType: ProofType): Claim | undefined {
+    if (Array.isArray(this.proof)) {
+      for (const proof of this.proof) {
+        const { claim, proofType: extractedProofType } = extractProof(proof);
+        if (proofType === extractedProofType) {
+          return claim;
+        }
+      }
+    } else if (typeof this.proof === 'object') {
+      const { claim, proofType: extractedProofType } = extractProof(this.proof);
+      if (extractedProofType == proofType) {
+        return claim;
+      }
+    }
+    return undefined;
+  }
+  /**
+   * checks BJJSignatureProof2021 in W3C VC
+   *
+   * @returns BJJSignatureProof2021 | undefined
+   */
+  getBJJSignature2021Proof(): BJJSignatureProof2021 | undefined {
+    const proofType: ProofType = ProofType.BJJSignature;
+    if (Array.isArray(this.proof)) {
+      for (const proof of this.proof) {
+        const { proofType: extractedProofType } = extractProof(proof);
+        if (proofType === extractedProofType) {
+          return new BJJSignatureProof2021(proof);
+        }
+      }
+    } else if (typeof this.proof === 'object') {
+      const { proofType: extractedProofType } = extractProof(this.proof);
+      if (extractedProofType == proofType) {
+        return new BJJSignatureProof2021(this.proof);
+      }
+    }
+    return undefined;
+  }
+
+  /**
+   * checks Iden3SparseMerkleTreeProof in W3C VC
+   *
+   * @returns {*}  {(Iden3SparseMerkleTreeProof | undefined)}
+   */
+  getIden3SparseMerkleTreeProof(): Iden3SparseMerkleTreeProof | undefined {
+    const proofType: ProofType = ProofType.Iden3SparseMerkleTreeProof;
+    if (Array.isArray(this.proof)) {
+      for (const proof of this.proof) {
+        const { proofType: extractedProofType } = extractProof(proof);
+        if (proofType === extractedProofType) {
+          return new Iden3SparseMerkleTreeProof(proof);
+        }
+      }
+    } else if (typeof this.proof === 'object') {
+      const { proofType: extractedProofType } = extractProof(this.proof);
+      if (extractedProofType == proofType) {
+        return new Iden3SparseMerkleTreeProof(this.proof);
+      }
+    }
+    return undefined;
+  }
+}
+
+/**
+ * extracts core claim from Proof and returns Proof Type
+ *
+ * @param {object} proof - proof of vc
+ * @returns {*}  {{ claim: Claim; proofType: ProofType }}
+ */
+export function extractProof(proof: object): { claim: Claim; proofType: ProofType } {
+  if (proof instanceof Iden3SparseMerkleTreeProof) {
+    return {
+      claim: new Claim().fromHex(proof.coreClaim),
+      proofType: ProofType.Iden3SparseMerkleTreeProof
+    };
+  }
+  if (proof instanceof BJJSignatureProof2021) {
+    return { claim: new Claim().fromHex(proof.coreClaim), proofType: ProofType.BJJSignature };
+  }
+  if (typeof proof === 'object') {
+    const p = proof as { type: ProofType; coreClaim: string };
+    const defaultProofType: ProofType = p.type;
+    if (!defaultProofType) {
+      throw new Error('proof type is not specified');
+    }
+    const coreClaimHex = p.coreClaim;
+    if (!coreClaimHex) {
+      throw new Error(`coreClaim field is not defined in proof type ${defaultProofType}`);
+    }
+    return { claim: new Claim().fromHex(coreClaimHex), proofType: defaultProofType as ProofType };
+  }
+
+  throw new Error('proof format is not supported');
+}
+
+/**
+ * Credential schema vc
+ *
+ * @public
+ * @interface   CredentialSchema
+ */
+export interface CredentialSchema {
+  id: string;
+  type: string;
+}
+
+/**
+ * Issuer tree information
+ *
+ * @public
+ * @interface   Issuer
+ */
+export interface Issuer {
+  state?: string;
+  rootOfRoots?: string;
+  claimsTreeRoot?: string;
+  revocationTreeRoot?: string;
+}
+
+/**
+ *
+ * RevocationStatus status of revocation nonce. Info required to check revocation state of claim in circuits
+ * @public
+ * @interface   RevocationStatus
+ */
+export interface RevocationStatus {
+  mtp: Proof;
+  issuer: Issuer;
+}

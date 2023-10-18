@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <script src="./dist/umd/index.js"></script>
+    <title>Test</title>
+</head>
+
+<body>
+    Test browser
+</body>
+<script>
+    const {
+        LocalStoragePrivateKeyStore,
+        IdentityStorage,
+        MerkleTreeLocalStorage,
+        CredentialStorage,
+        W3CCredential,
+        BrowserDataSource,
+        BjjProvider,
+        KmsKeyType,
+        IdentityWallet,
+        CredentialWallet,
+        KMS,
+        core,
+        CredentialStatusType,
+        CredentialStatusResolverRegistry,
+        IssuerResolver,
+        RHSResolver, 
+        defaultEthConnectionConfig,
+        OnChainResolver,
+        MerkleTreeIndexedDBStorage
+    } = PolygonIdSdk;
+
+    const run = async () => {
+        const keyStore = new LocalStoragePrivateKeyStore();
+        const bjjProvider = new BjjProvider(KmsKeyType.BabyJubJub, keyStore);
+        const kms = new KMS();
+        kms.registerKeyProvider(KmsKeyType.BabyJubJub, bjjProvider);
+
+        dataStorage = {
+            credential: new CredentialStorage(
+                new BrowserDataSource(CredentialStorage.storageKey)
+            ),
+            identity: new IdentityStorage(
+                new BrowserDataSource(IdentityStorage.identitiesStorageKey),
+                new BrowserDataSource(IdentityStorage.profilesStorageKey)
+            ),
+            mt: new MerkleTreeIndexedDBStorage(40),
+            states: {
+                getLatestStateById: async (issuerId) => {
+                    return { id: BigInt(0), state: BigInt(0) };
+                }
+            }
+        };
+
+        const resolvers = new CredentialStatusResolverRegistry();
+        resolvers.register(
+            CredentialStatusType.SparseMerkleTreeProof,
+            new IssuerResolver()
+        );
+        resolvers.register(
+            CredentialStatusType.Iden3ReverseSparseMerkleTreeProof,
+            new RHSResolver(dataStorage.states)
+        );
+        resolvers.register(
+            CredentialStatusType.Iden3OnchainSparseMerkleTreeProof2023,
+            new OnChainResolver([defaultEthConnectionConfig])
+        )
+
+        const credWallet = new CredentialWallet(dataStorage, resolvers);
+        wallet = new IdentityWallet(kms, dataStorage, credWallet);
+        console.log(wallet);
+
+        const seedPhrase = new TextEncoder().encode('seedseedseedseedseedseedseedseed');
+
+        const { did, credential } = await wallet.createIdentity({
+            method: core.DidMethod.Iden3,
+            blockchain: core.Blockchain.Polygon,
+            networkId: core.NetworkId.Mumbai,
+            seed: seedPhrase,
+            revocationOpts: {
+                type: CredentialStatusType.Iden3ReverseSparseMerkleTreeProof,
+                id: 'http://rhs.com/node'
+            }
+        }
+        );
+        console.log(did.string());
+        console.assert(did.string() === 'did:iden3:polygon:mumbai:wzokvZ6kMoocKJuSbftdZxTD6qvayGpJb3m4FVXth');
+
+    };
+    run().catch(console.error);
+</script>
+
+</html>
