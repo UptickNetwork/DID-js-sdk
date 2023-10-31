@@ -640,6 +640,11 @@
   resolved "https://registry.yarnpkg.com/@iden3/js-crypto/-/js-crypto-1.0.1.tgz#41d89e617120503d0bfc8530fc7b90e5238435aa"
   integrity sha512-HqNhBZ5HtMWFM0OAybASQxVOKItHCF8nns/Ba9bTGf3nUI3gdBsyDtm52gCOKhan5vNxJta6rA6n1LVpkj3zMw==
 
+"@iden3/js-crypto@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@iden3/js-crypto/-/js-crypto-1.0.3.tgz#3de49d451d66a01f7258ae1be1fdb7a83e0c819c"
+  integrity sha512-IFBLIN1O26mM5MVWO8dlABDC6HKLuhYs+30BT+p6dGWsNXB4Rr5JWuhKBUbKlkW78ly3j3+YSoY+J63q7vPs5Q==
+
 "@iden3/js-iden3-core@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@iden3/js-iden3-core/-/js-iden3-core-1.0.2.tgz#2f26f376f3daf9b937636c0df41d18718fa9f67a"
